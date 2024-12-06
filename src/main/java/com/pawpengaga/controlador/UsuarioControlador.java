@@ -38,7 +38,7 @@ public class UsuarioControlador {
   @PostMapping("/grabar")
   public String grabarUsuario(@ModelAttribute("Usuario") Usuario user){
     respuesta = userService.agregaUsuario(user);
-    return "redirect:/inicio";
+    return "redirect:/usuarios/inicio";
   }
 
 }

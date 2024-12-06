@@ -25,8 +25,18 @@ public class UsuarioServiceImpl implements IUsuario {
 
   @Override
   public String agregaUsuario(Usuario user) {
-    boolean existe = listaUsuarios.stream().anyMatch(u -> u.getRut().equals(user.getRut()));
+
+    boolean existe = false;
+
+    if (!listaUsuarios.isEmpty()) {
+      // Sera solo verdadero cuando lo consiga
+      existe = listaUsuarios.stream().anyMatch(u -> u.getRut().equals(user.getRut()));
+    }
+
     if (existe) {
+      System.out.println("**************************");
+      System.out.println("Existe!!!!!!!!!!!");
+      System.out.println("**************************");
       return "existe";
     } else {
       listaUsuarios.add(user);
