@@ -37,6 +37,10 @@ public class UsuarioServiceImpl implements IUsuario {
   @Override
   public Usuario buscarUsuario(String rut) {
 
+    // Los stream suelen seguir la misma estructura...
+    Usuario user = listaUsuarios.stream().filter(u -> u.getRut().equals(rut)).findFirst().orElse(null);
+    return user;
+
   }
 
 }
