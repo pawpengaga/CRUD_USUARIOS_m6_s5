@@ -25,26 +25,28 @@ public class UsuarioControlador {
   @GetMapping("/inicio")
   public ModelAndView inicio(){
 
-    // String tipo = null;
-    // String mensaje = null;
+    String tipo = null;
+    String mensaje = null;
     ModelAndView mav = new ModelAndView("inicio");
 
-    // if (respuesta.equals("exito")) {
-      // tipo = "alert-success";
-      // mensaje = "Registro agregado con éxito!";
-    // } else {
-      // tipo = "alert-warning";
-      // mensaje = "Ya existe un usuario con este RUT...";
-    // }
-
-    // if (respuesta != null) {
+    if (respuesta != null) {
       // Por si acaso
-    // }
+      if (respuesta.equals("exito")) {
+        tipo = "success";
+        mensaje = "Registro agregado con éxito!";
+      } else {
+        tipo = "danger";
+        mensaje = "Ya existe un usuario con este RUT...";
+      }
+      System.out.println("*************************************************");
+      System.out.println("TIPO: " + tipo + ", ALERTA: " + mensaje);
+      System.out.println("*************************************************");
+    }
     
     List<Usuario> listado = userService.listaUsuarios();
 
-    // mav.addObject("mensaje", mensaje);
-    // mav.addObject("tipo", tipo);
+    mav.addObject("mensaje", mensaje);
+    mav.addObject("tipo", tipo);
     mav.addObject("listado", listado);
     return mav;
   }
