@@ -32,7 +32,13 @@
     </nav>
   </section>
   <main class="container">
-    <section class="mt-5">
+    
+    <div th:if="${mensaje != null && tipo != null}" th:class="`alert-dismissible alert` + alert-${tipo}" role="alert">`,
+      <div>${mensaje}</div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+   
+   <section class="mt-5">
       <h1 class="diplay-4 mb-5">Listado de usuarios</h1>
       <table class="table table-hover">
         <thead>

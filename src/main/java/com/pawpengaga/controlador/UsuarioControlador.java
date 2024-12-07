@@ -22,10 +22,25 @@ public class UsuarioControlador {
 
   String respuesta;
 
-  @GetMapping({"/", "/inicio"})
+  @GetMapping("/inicio")
   public ModelAndView inicio(){
+    String tipo = null;
+    String mensaje = null;
+    if (respuesta != null) {
+      if (respuesta.equals("exito")) {
+        tipo = "alert-success";
+        mensaje = "Registro agregado con éxito!";
+      } else {
+        tipo = "alert-warning";
+        mensaje = "Ya existe un usuario con este RUT...";
+      }
+    }
+    
     ModelAndView mav = new ModelAndView("inicio");
     List<Usuario> listado = userService.listaUsuarios();
+
+    mav.addObject("mensaje", mensaje);
+    mav.addObject("tipo", tipo);
     mav.addObject("listado", listado);
     return mav;
   }
