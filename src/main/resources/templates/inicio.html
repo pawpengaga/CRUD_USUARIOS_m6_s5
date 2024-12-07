@@ -31,12 +31,7 @@
       </div>
     </nav>
   </section>
-  <main class="container">
-    <div th:if="${mensaje != null && tipo != null}" th:class="'alert alert-dismissible ' + 'alert-' + ${tipo}" role="alert">
-      <div th:text="${mensaje}"></div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-   </div>
-   
+  <main class="container">   
    <section class="mt-5">
       <h1 class="diplay-4 mb-5">Listado de usuarios</h1>
       <table class="table table-hover">
@@ -60,7 +55,10 @@
       </table>
     </section>
   </main>
-
+  <div th:if="${mensaje != null && tipo != null}" th:class="'me-4 mb-4 alert alert-dismissible ' + 'alert-' + ${tipo}" role="alert" style="position: absolute; bottom: 0; right: 0; min-width: 400px;">
+    <div th:text="${mensaje}"></div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+ </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
