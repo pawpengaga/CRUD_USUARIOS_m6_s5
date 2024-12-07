@@ -34,6 +34,9 @@ public class UsuarioControlador {
       if (respuesta.equals("exito")) {
         tipo = "success";
         mensaje = "Registro agregado con éxito!";
+      } else if (respuesta.equals("fracaso")) {
+        tipo = "warning";
+        mensaje = "Su registro no presenta datos válidos...";
       } else {
         tipo = "danger";
         mensaje = "Ya existe un usuario con este RUT...";

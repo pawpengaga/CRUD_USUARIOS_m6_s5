@@ -1,64 +1,15 @@
 package com.pawpengaga.servicios;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-import com.pawpengaga.modelo.Usuario;
-
-@Service
-public class UsuarioServiceImpl implements IUsuario {
-
-  // Lista de usuarios como atributo base
-  List<Usuario> listaUsuarios;
-
-  public UsuarioServiceImpl(){
-    // Metodo constructor donde se inicializa la variable
-    listaUsuarios = new ArrayList<>();
+public class TestGround {
+  public static void main(String[] args) {
+    System.out.println("\n");
+    calculoDigitoVerificador("19.492.730-4");
+    //calculoDigitoVerificador("27.962.409-2");
   }
-
-  @Override
-  public List<Usuario> listaUsuarios() {
-    return listaUsuarios;
-  }
-
-  @Override
-  public String agregaUsuario(Usuario user) {
-
-    boolean existe = false;
-
-    if (!listaUsuarios.isEmpty()) {
-      // Sera solo verdadero cuando lo consiga
-      existe = listaUsuarios.stream().anyMatch(u -> u.getRut().equals(user.getRut()));
-    }
-
-    if (existe) {
-      System.out.println("**************************");
-      System.out.println("Existe!!!!!!!!!!!");
-      System.out.println("**************************");
-      return "existe";
-    } else {
-      String regex = "^(\\d{1,3}(?:\\.\\d{1,3}){2}-[\\dkK])$";
-      if (user.getRut().matches(regex) && calculoDigitoVerificador(user.getRut())) {
-        listaUsuarios.add(user);
-        return "exito";
-      }
-    }
-
-    return "fracaso";
-  }
-
-  @Override
-  public Usuario buscarUsuario(String rut) {
-
-    // Los stream suelen seguir la misma estructura...
-    Usuario user = listaUsuarios.stream().filter(u -> u.getRut().equals(rut)).findFirst().orElse(null);
-    return user;
-
-  }
-
-  /* ************************** METODOS PRIVADOS ************************** */
 
   private static boolean calculoDigitoVerificador(String rut){
 
@@ -96,7 +47,7 @@ public class UsuarioServiceImpl implements IUsuario {
         }
       }
 
-      // Ya no tengo mas nombres para mas tipos de calculo
+      // Ya no tengo mas nombres para mas tipos de calculo 1
       int pasocinco = Math.round(resultadoSuma / 11) * 11;
       int pasoseis = resultadoSuma - pasocinco;
       int pasosiete = 11 - pasoseis;
@@ -112,6 +63,12 @@ public class UsuarioServiceImpl implements IUsuario {
         }
       }
 
+      // Ya no tengo mas nombres para mas tipos de calculo 2
+
+      System.out.println("EL RESULTADO 5 ES: " + pasocinco);
+      System.out.println("EL RESULTADO 6 ES: " + pasoseis);
+      System.out.println("EL RESULTADO 7 ES: " + verificador);
+
       // Comprobacion booleana final
       String comprobador = rutDividido[1];      
 
@@ -123,5 +80,4 @@ public class UsuarioServiceImpl implements IUsuario {
 
     return false;
   }
-
 }
