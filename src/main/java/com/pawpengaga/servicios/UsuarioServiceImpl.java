@@ -100,8 +100,12 @@ public class UsuarioServiceImpl implements IUsuario {
       int pasocinco = Math.round(resultadoSuma / 11) * 11;
       int pasoseis = resultadoSuma - pasocinco;
       int pasosiete = 11 - pasoseis;
+
+      // Los reales
+      String comprobador = rutDividido[1]; 
       char verificador = 'x';
       
+      // Asignacion verificadora
       if (pasosiete < 11 && pasosiete >= 0) {
         if (pasosiete == 11) {
           verificador = 0;
@@ -113,8 +117,6 @@ public class UsuarioServiceImpl implements IUsuario {
       }
 
       // Comprobacion booleana final
-      String comprobador = rutDividido[1];      
-
       if (comprobador.equalsIgnoreCase(String.valueOf(verificador))) {
         return true;
       }
